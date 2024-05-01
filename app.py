@@ -6,17 +6,11 @@ from flask_bcrypt import Bcrypt
 from flask_mysqldb import MySQL
 from flask import Flask
 from flask_babel import Babel
-import os
-from dotenv import load_dotenv
-
-
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 babel = Babel(app)
-load_dotenv()
 
-app.config['DEBUG'] = os.environ.get('FLASK_DEBUG')
 
 # Database configuration
 app.config['MYSQL_HOST'] = 'localhost'
@@ -188,3 +182,9 @@ def redirect_dashboard(name, role):
 
 if __name__ == '__main__':
     app.run()
+
+
+
+
+
+
