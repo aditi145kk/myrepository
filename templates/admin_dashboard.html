@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Admin Dashboard</title>
+ <style>
+ body {
+ margin: 0;
+ padding: 0;
+ font-family: Arial, sans-serif;
+ background-color: #4CAF50;
+ color: #fff;
+ display: flex;
+ justify-content: center;
+ align-items: flex-start;
+ min-height: 100vh;
+ overflow: hidden;
+ position: relative;
+ }
+ .overlay {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: black;
+ opacity: 0.7;
+ z-index: -1;
+ }
+ .container {
+ max-width: 800px;
+ padding: 20px;
+ text-align: center;
+ position: relative;
+ z-index: 1;
+ margin-top: 20px;
+ }
+ h1 {
+ font-size: 48px;
+ margin-bottom: 20px;
+ }
+ ul {
+ list-style-type: none;
+ padding: 0;
+ }
+ li {
+ background-color: black;
+ padding: 10px;
+ margin-bottom: 10px;
+ border-radius: 5px;
+ }
+ a {
+ color: #fff;
+ text-decoration: none;
+ }
+ /* Cloud animation */
+ .cloud {
+ position: absolute;
+ top: -100px;
+ left: -200px;
+ animation: moveCloud 20s linear infinite;
+ }
+ @keyframes moveCloud {
+ 0% { transform: translateX(-200px); }
+ 100% { transform: translateX(calc(100% + 200px)); }
+ }
+ </style>
+</head>
+<body>
+ <div class="overlay"></div>
+ <div class="container">
+ <h1>Welcome to Admin Dashboard</h1>
+ <ul>
+ {% for user in users %}
+ <li><a href="{{ url_for('redirect_dashboard', name=user[0], role=user[1]) }}">{{
+user[0] }}</a></li>
+ {% endfor %}
+ </ul>
+ </div>
+</body>
+</html>

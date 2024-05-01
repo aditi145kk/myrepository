@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ g.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Index Page') }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{{ url_for('static', filename='images/bg1.jpg') }}"); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Shadow effect */
+        }
+        h1 {
+            font-size: 3rem;
+            font-style: italic;
+            font-weight: bold;
+            color: #FFF; /* White text color */
+            background-color: #023020; /* Blue background color */
+            padding: 10px 20px; /* Add some padding */
+            border-radius: 10px; /* Rounded corners */
+            display: inline-block; /* Prevent line break */
+            margin-bottom: 20px; /* Add space below */
+        }
+        h2 {
+            font-size: 1.2rem;
+            color: #FFF; /* White text color */
+            margin-bottom: 20px; /* Add space below */
+        }
+        p {
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dashed white;
+        }
+        a:hover {
+            border-bottom-style: solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ _('MFLOW') }}</h1>
+        <h2>{{ _('Delivering Health, Empowering Communities.') }}</h2>
+        
+        <p><a href="{{ url_for('login') }}">{{ _('Login') }}</a> - {{ _('Kindly login to access your account.') }}</p>
+        <p><a href="{{ url_for('register') }}">{{ _('Register') }}</a> - {{ _('Register now!') }}</p>
+    </div>
+</body>
+</html>

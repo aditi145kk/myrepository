@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4CAF50;
+            color: #333; 
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            background-color: #dff0d8;
+            padding: 8px;
+            border-left: 4px solid #3c763d;
+        }
+        .cloud-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px; /* Adjust height as needed */
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .cloud {
+            position: absolute;
+            top: 30%; /* Adjust top position as needed */
+            left: -200px; /* Initial position off-screen */
+            z-index: 0; /* Ensure the cloud is behind other content */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delivery Dashboard</h1>
+
+        <!-- Task Assignment Form -->
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <h2 style="text-align: center;">STATUS UPDATING</h2> <!-- Moved within the form -->
+            <div>
+                <label for="package_name">Package Name</label>
+                {{ form.package_name() }}
+            </div>
+            <div>
+                <label for="client">Client</label>
+                {{ form.client() }}
+            </div>
+            <div>
+                <label for="status">Status</label>
+                {{ form.status() }}
+            </div>
+            <div>
+                <label for="time">Time</label>
+                {{ form.time() }}
+            </div>
+            <button type="submit">Assign Task</button>
+        </form>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="cloud-container">
+        <img src="static/images/cloud.png" alt="Cloud" class="cloud" style="width: 200px;">
+    </div>
+
+    <script>
+        // Function to animate the cloud
+        function animateCloud(cloud) {
+            let posX = -200; // Initial position off-screen
+            const speed = 1; // Adjust speed as needed
+
+            function moveCloud() {
+                posX += speed;
+                cloud.style.left = posX + 'px';
+                if (posX > window.innerWidth) {
+                    // If cloud goes off-screen, reset position
+                    posX = -200;
+                    cloud.style.left = posX + 'px';
+                }
+                requestAnimationFrame(moveCloud);
+            }
+
+            moveCloud();
+        }
+
+        // Get the cloud element
+        const cloud = document.querySelector('.cloud');
+        // Animate the cloud
+        animateCloud(cloud);
+    </script>
+</body>
+</html>
